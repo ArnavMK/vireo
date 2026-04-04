@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vireo — Half the Price, Zero Waste</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #fafcfa;
+      --bg-secondary: #f1f5f1;
+      --bg-card: #ffffff;
+      --bg-hero: #f4f8f4;
+      --text-primary: #1a2e1f;
+      --text-secondary: #4a6b52;
+      --text-muted: #7a9a82;
+      --accent: #2d8a4e;
+      --accent-bright: #22c55e;
+      --accent-glow: rgba(45, 138, 78, 0.08);
+      --accent-glow-strong: rgba(45, 138, 78, 0.14);
+      --warm: #c67b1a;
+      --warm-dim: rgba(198, 123, 26, 0.08);
+      --coral: #d1495b;
+      --coral-dim: rgba(209, 73, 91, 0.07);
+      --teal: #1a8a7a;
+      --teal-dim: rgba(26, 138, 122, 0.07);
+      --border: rgba(45, 138, 78, 0.1);
+      --border-light: rgba(26, 46, 31, 0.06);
+      --shadow-sm: 0 1px 3px rgba(26, 46, 31, 0.04), 0 1px 2px rgba(26, 46, 31, 0.03);
+      --shadow-md: 0 4px 16px rgba(26, 46, 31, 0.06), 0 2px 6px rgba(26, 46, 31, 0.03);
+      --shadow-lg: 0 12px 40px rgba(26, 46, 31, 0.08), 0 4px 12px rgba(26, 46, 31, 0.04);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Outfit', -apple-system, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.75;
+      font-size: 17px;
+      overflow-x: hidden;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 48px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(250, 252, 250, 0.8);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+      font-weight: 500; letter-spacing: 0.02em; transition: color 0.25s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--accent); border-radius: 1px;
+      transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); border-radius: 2px; }
+
+    /* ── Sections ── */
+    section { padding: 120px 48px; max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: ''; display: inline-block; width: 24px; height: 2px;
+      background: var(--accent); border-radius: 1px;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6.5vw, 5.4rem);
+      line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 28px;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    h3 { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.25; margin-bottom: 14px; }
+    p.lead { font-size: 1.2rem; color: var(--text-secondary); max-width: 660px; line-height: 1.85; }
+    .highlight { color: var(--accent); }
+    .section-inner { max-width: 1280px; margin: 0 auto; padding: 120px 48px; }
+
+    /* ── Hero ── */
+    .hero-wrapper { background: var(--bg-hero); position: relative; overflow: hidden; }
+    .hero-wrapper::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(45, 138, 78, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; padding-top: 72px; position: relative; z-index: 2;
+    }
+    .hero-tagline { font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-bottom: 16px; letter-spacing: 0.04em; }
+    h1 .em { font-style: italic; color: var(--accent); }
+    .hero-desc { font-size: 1.25rem; color: var(--text-secondary); max-width: 620px; line-height: 1.85; margin-bottom: 40px; }
+    .hero-stats { display: flex; gap: 52px; margin-top: 56px; flex-wrap: wrap; }
+    .hero-stat { display: flex; flex-direction: column; }
+    .hero-stat-number { font-family: var(--font-display); font-size: 3rem; color: var(--accent-bright); line-height: 1; margin-bottom: 6px; }
+    .hero-stat-label { font-size: 0.92rem; color: var(--text-muted); font-weight: 500; max-width: 190px; }
+    .scroll-hint {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: var(--text-muted); font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase; animation: bob 2s ease-in-out infinite;
+    }
+    .scroll-hint svg { width: 20px; height: 20px; stroke: var(--text-muted); }
+    @keyframes bob {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── Problem Cards with Images ── */
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px; margin-top: 48px;
+    }
+    .problem-card {
+      background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+    }
+    .problem-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .problem-card-img {
+      width: 100%; height: 200px; object-fit: cover; display: block;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .problem-card-img-placeholder {
+      width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;
+      background: var(--bg-secondary); border-bottom: 1px solid var(--border-light);
+      font-size: 3rem;
+    }
+    .problem-card-body { padding: 32px; }
+    .problem-card-body h3 { font-size: 1.45rem; margin-bottom: 12px; }
+    .problem-card-body p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.8; }
+
+    /* ── Solution ── */
+    .solution-intro {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .solution-intro-text p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.85; margin-bottom: 16px; }
+    .phone-mockup {
+      background: linear-gradient(145deg, #fff 0%, #f0f5f0 100%);
+      border: 1px solid var(--border-light); border-radius: 28px; padding: 24px;
+      text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);
+    }
+    .phone-mockup::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 30%, var(--accent-glow) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .phone-inner {
+      position: relative; z-index: 1; background: var(--bg-primary);
+      border-radius: 20px; padding: 32px 20px; min-height: 420px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .phone-inner .app-name { font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); margin-bottom: 24px; }
+    .mock-product {
+      width: 100%; background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm); padding: 16px; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 14px; text-align: left; box-shadow: var(--shadow-sm);
+    }
+    .mock-emoji { font-size: 1.8rem; }
+    .mock-details { flex: 1; }
+    .mock-details .name { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
+    .mock-details .store { font-size: 0.82rem; color: var(--text-muted); }
+    .mock-discount { background: var(--accent); color: #fff; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 8px; }
+
+    /* ── Steps (bright green numbers) ── */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
+    .step {
+      text-align: center; padding: 44px 28px; border-radius: var(--radius);
+      background: var(--bg-card); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);
+      transition: border-color 0.3s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+    }
+    .step:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .step-num {
+      font-family: var(--font-display); font-size: 2.6rem;
+      color: var(--accent-bright); margin-bottom: 18px; line-height: 1;
+    }
+    .step h3 { margin-bottom: 12px; font-size: 1.35rem; }
+    .step p { color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
+
+    /* ── Features — Narrative Flow ── */
+    .features-narrative { margin-top: 64px; }
+    .feature-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center; margin-bottom: 80px;
+    }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: ltr; }
+    .feature-text h3 { font-size: 1.5rem; margin-bottom: 12px; }
+    .feature-text p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85; }
+    .feature-visual {
+      background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: var(--radius); min-height: 280px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-sm); overflow: hidden; position: relative;
+    }
+    .feature-visual img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .feature-placeholder {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; padding: 40px; text-align: center; color: var(--text-muted);
+    }
+    .feature-placeholder-icon { font-size: 2.5rem; opacity: 0.5; }
+    .feature-placeholder-text { font-size: 0.9rem; font-weight: 500; }
+    .feature-placeholder-sub { font-size: 0.8rem; opacity: 0.7; }
+
+    /* ── App Showcase ── */
+    .app-showcase-wrapper { background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%); }
+    .app-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .app-showcase-text h2 { margin-bottom: 20px; }
+    .app-showcase-text p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.85; margin-bottom: 16px; }
+    .app-feature-list { margin-top: 28px; display: flex; flex-direction: column; gap: 18px; }
+    .app-feature-item { display: flex; gap: 14px; align-items: flex-start; }
+    .app-feature-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-bright); margin-top: 9px; flex-shrink: 0; }
+    .app-feature-item p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.65; margin: 0; }
+    .app-feature-item strong { color: var(--text-primary); }
+    .app-phone-frame { display: flex; justify-content: center; position: relative; }
+    .app-phone-frame::before {
+      content: ''; position: absolute; width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-glow-strong) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;
+    }
+    .app-phone-img { position: relative; z-index: 2; width: 300px; border-radius: 36px; box-shadow: var(--shadow-lg), 0 24px 60px rgba(26, 46, 31, 0.12); }
+
+    /* ── Impact ── */
+    .impact-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+    .impact-column {
+      background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow-sm);
+    }
+    .impact-column h3 { font-size: 1.4rem; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .impact-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+    .impact-bullet { width: 8px; height: 8px; border-radius: 50%; margin-top: 9px; flex-shrink: 0; }
+    .impact-bullet.green { background: var(--accent-bright); }
+    .impact-bullet.amber { background: var(--warm); }
+    .impact-item p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.75; }
+    .priority-block {
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(45, 138, 78, 0.03) 100%);
+      border: 1px solid var(--border); border-radius: var(--radius); padding: 40px;
+      margin-top: 32px; box-shadow: var(--shadow-sm);
+    }
+    .priority-block h3 { font-size: 1.3rem; margin-bottom: 14px; }
+    .priority-block p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.85; }
+
+    /* ── Retailers ── */
+    .retailer-benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
+    .retailer-card {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+    }
+    .retailer-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .retailer-num { font-family: var(--font-display); font-size: 2rem; color: var(--accent-bright); opacity: 0.6; line-height: 1; flex-shrink: 0; }
+    .retailer-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .retailer-card p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; }
+
+    /* ── Business Model ── */
+    .biz-scal { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+    .biz-card {
+      background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow-sm);
+    }
+    .biz-card h3 { font-size: 1.4rem; margin-bottom: 18px; }
+    .biz-card p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.85; margin-bottom: 14px; }
+    .scale-point { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; }
+    .scale-point-num { font-family: var(--font-display); font-size: 1.4rem; color: var(--accent-bright); flex-shrink: 0; line-height: 1.5; }
+    .scale-point p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; margin: 0; }
+
+    /* ── Charities ── */
+    .charity-content { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 48px; }
+    .charity-text p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.85; margin-bottom: 16px; }
+    .charity-list {
+      background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow-sm);
+    }
+    .charity-list h3 { margin-bottom: 20px; font-size: 1.2rem; }
+    .charity-list-item {
+      display: flex; align-items: center; gap: 12px; padding: 15px 0;
+      border-bottom: 1px solid var(--border-light); color: var(--text-secondary); font-size: 1rem;
+    }
+    .charity-list-item:last-child { border-bottom: none; }
+    .charity-check {
+      width: 24px; height: 24px; border-radius: 6px; background: var(--accent-glow);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      color: var(--accent-bright); font-size: 0.8rem; font-weight: 700;
+    }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 820px; margin: 48px auto 0; }
+    .faq-item { border-bottom: 1px solid var(--border-light); }
+    .faq-question {
+      width: 100%; background: none; border: none; color: var(--text-primary);
+      font-family: var(--font-body); font-size: 1.1rem; font-weight: 600;
+      text-align: left; padding: 26px 0; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      transition: color 0.25s;
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-toggle {
+      width: 30px; height: 30px; border-radius: 50%; background: var(--bg-secondary);
+      border: 1px solid var(--border-light); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; transition: background 0.25s;
+    }
+    .faq-toggle svg { width: 14px; height: 14px; stroke: var(--accent-bright); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+    .faq-item.active .faq-toggle { background: var(--accent-glow); }
+    .faq-item.active .faq-toggle svg { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+    .faq-answer-inner { padding-bottom: 26px; color: var(--text-secondary); font-size: 1.02rem; line-height: 1.85; }
+
+    /* ── Contact ── */
+    .contact-wrapper { background: var(--bg-secondary); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .contact-text p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.85; }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px; padding: 22px 26px;
+      background: var(--bg-card); border: 1px solid var(--border-light);
+      border-radius: var(--radius); text-decoration: none; color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+    }
+    .contact-link:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .contact-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1.3rem;
+    }
+    .contact-icon.email { background: var(--coral-dim); }
+    .contact-icon.phone { background: var(--accent-glow); }
+    .contact-icon.linkedin { background: var(--teal-dim); }
+    .contact-link-info { flex: 1; }
+    .contact-link-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+    .contact-link-value { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); }
+    .contact-link-arrow { color: var(--text-muted); font-size: 1.2rem; transition: transform 0.3s, color 0.3s; }
+    .contact-link:hover .contact-link-arrow { transform: translateX(4px); color: var(--accent); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border-light); padding: 48px;
+      text-align: center; background: var(--bg-primary);
+    }
+    .footer-logo { font-family: var(--font-display); font-size: 1.4rem; color: var(--accent); margin-bottom: 8px; }
+    footer p { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      section, .section-inner { padding: 80px 24px; }
+      nav { padding: 0 24px; }
+      .solution-intro, .impact-split, .biz-scal, .charity-content,
+      .retailer-benefits, .contact-grid, .app-showcase, .feature-row { grid-template-columns: 1fr; }
+      .feature-row.reverse { direction: ltr; }
+      .app-showcase { gap: 48px; }
+      .steps { grid-template-columns: 1fr; }
+      .hero-stats { gap: 32px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 72px; left: 0; right: 0; background: rgba(250, 252, 250, 0.95);
+        backdrop-filter: blur(20px); padding: 24px 32px; gap: 20px;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .app-phone-img { width: 260px; }
+    }
+    @media (max-width: 600px) {
+      section, .section-inner { padding: 64px 18px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .app-phone-img { width: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#hero" class="nav-logo">vireo</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#app-interface">The App</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#retailers">For Retailers</a></li>
+      <li><a href="#model">Business Model</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero-wrapper">
+    <section id="hero">
+      <div>
+        <p class="hero-tagline reveal">Half the price, zero waste.</p>
+        <h1 class="reveal reveal-delay-1">We help essentials<br>reach <span class="em">people</span>,<br>not landfills.</h1>
+        <p class="hero-desc reveal reveal-delay-2">An online marketplace for near-expiry supermarket, pharmacy, and cosmetics products. Connecting stores with customers to fight food waste, reduce emissions, and make essentials affordable.</p>
+        <div class="hero-stats reveal reveal-delay-3">
+          <div class="hero-stat">
+            <span class="hero-stat-number">84k</span>
+            <span class="hero-stat-label">tonnes of food wasted by Irish supermarkets yearly</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-number">1 in 11</span>
+            <span class="hero-stat-label">people in Ireland experience food poverty</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-number">~50%</span>
+            <span class="hero-stat-label">estimated grocery bill savings</span>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </div>
+    </section>
+  </div>
+
+  <!-- Problem -->
+  <section id="problem">
+    <div class="section-label reveal">The Problem</div>
+    <h2 class="reveal">A crisis hiding in plain sight</h2>
+    <p class="lead reveal">Food waste and food poverty exist side by side. Millions go hungry while supermarkets discard tonnes of perfectly good products every year.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <!-- Replace src with a real image URL or local file -->
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=400&fit=crop" alt="Family struggling with food poverty" class="problem-card-img">
+        <div class="problem-card-body">
+          <h3>Food Poverty in Ireland</h3>
+          <p>1 in 11 people live in food poverty, and 25% of families worry about being unable to provide enough food for their children. 83% of adults believe grocery costs are unacceptably high, and 48% feel financial pressure from rising food prices.</p>
+        </div>
+      </div>
+
+      <div class="problem-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&h=400&fit=crop" alt="Landfill with food waste contributing to emissions" class="problem-card-img">
+        <div class="problem-card-body">
+          <h3>Environmental Devastation</h3>
+          <p>Food waste accounts for approximately 10% of global greenhouse gas emissions — generating twice the emissions of the entire aviation industry. Decomposing food releases methane, a gas 25 times stronger than CO₂, while the wasted food had already consumed 18% of farmland, 19% of fertilisers, and 21% of freshwater.</p>
+        </div>
+      </div>
+
+      <div class="problem-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=600&h=400&fit=crop" alt="Pharmaceutical and cosmetic products" class="problem-card-img">
+        <div class="problem-card-body">
+          <h3>Pharmaceutical &amp; Cosmetic Waste</h3>
+          <p>Even when handled properly, disposing of unsold pharmaceutical and cosmetic products is energy-intensive — requiring recollection, transportation, and specialised processing. Prevention is far more sustainable than disposal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section id="solution">
+    <div class="section-label reveal">The Solution</div>
+    <div class="solution-intro">
+      <div class="solution-intro-text reveal">
+        <h2>Meet <span class="highlight">Vireo</span></h2>
+        <p>An online marketplace for near-expiry products and items safe for consumption but unsuitable for full-price sale. We digitalise existing in-store discounts, making them visible and searchable for everyone.</p>
+        <p>Discounts of 75–90% on near-expiry products already exist in stores. But customers don't know what's discounted, in which stores, or on what days. Vireo solves this information gap.</p>
+      </div>
+      <div class="phone-mockup reveal reveal-delay-1">
+        <div class="phone-inner">
+          <div class="app-name">vireo</div>
+          <div class="mock-product"><span class="mock-emoji">🍓</span><div class="mock-details"><div class="name">Strawberries 400g</div><div class="store">Tesco — Castletroy</div></div><span class="mock-discount">-75%</span></div>
+          <div class="mock-product"><span class="mock-emoji">🥛</span><div class="mock-details"><div class="name">Organic Milk 1L</div><div class="store">Dunnes — City Centre</div></div><span class="mock-discount">-60%</span></div>
+          <div class="mock-product"><span class="mock-emoji">🧴</span><div class="mock-details"><div class="name">Vitamin C Serum</div><div class="store">Boots — Crescent</div></div><span class="mock-discount">-80%</span></div>
+          <div class="mock-product"><span class="mock-emoji">💊</span><div class="mock-details"><div class="name">Paracetamol 24pk</div><div class="store">McCauley Pharmacy</div></div><span class="mock-discount">-90%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div style="margin-top: 96px;">
+      <h2 class="reveal" style="text-align: center;">How it works</h2>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <h3>Retailers Upload</h3>
+          <p>Stores list near-expiry items via barcode scanning, inventory integration, or manual entry — flexible for retailers of any size.</p>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-num">02</div>
+          <h3>Customers Browse</h3>
+          <p>Users find discounted products nearby, filtered by dietary preferences, location, and product category across food, pharmacy, and cosmetics.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-num">03</div>
+          <h3>Collect In-Store</h3>
+          <p>Purchase through the app, then pick up at any time during store hours by showing a generated barcode at the counter.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Features — Narrative Flow -->
+    <div style="margin-top: 96px;">
+      <h2 class="reveal" style="text-align: center;">Key Features</h2>
+
+      <div class="features-narrative">
+        <!-- Notify Me -->
+        <div class="feature-row reveal">
+          <div class="feature-text">
+            <h3>🔔 "Notify Me" Alerts</h3>
+            <p>Set alerts for the products you buy regularly — milk, bread, baby food, medicine, and more. When they become available at a reduced price nearby, you'll get a notification so you never miss a deal on the items you need most.</p>
+          </div>
+          <div class="feature-visual">
+            <!-- PLACEHOLDER: Replace with Notify Me mockup image when ready -->
+            <div class="feature-placeholder">
+              <div class="feature-placeholder-icon">🔔</div>
+              <div class="feature-placeholder-text">Notification mockup coming soon</div>
+              <div class="feature-placeholder-sub">Replace this with the pop-up screenshot</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CO₂ Tracking -->
+        <div class="feature-row reverse reveal">
+          <div class="feature-text">
+            <h3>📊 CO₂ Savings Tracker</h3>
+            <p>Every purchase on Vireo prevents food from reaching a landfill. Our built-in tracker shows each user exactly how much CO₂ they've helped save, turning everyday shopping into measurable environmental action.</p>
+          </div>
+          <div class="feature-visual">
+            <!-- PLACEHOLDER: Replace with CO₂ savings graph when ready -->
+            <div class="feature-placeholder">
+              <div class="feature-placeholder-icon">📊</div>
+              <div class="feature-placeholder-text">CO₂ savings graph coming soon</div>
+              <div class="feature-placeholder-sub">Replace this with the chart/graphic</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dietary Prefs + Multi-Sector + Flexible Collection -->
+        <div class="feature-row reveal">
+          <div class="feature-text">
+            <h3>🥗 Built for Every Lifestyle</h3>
+            <p>Filter by dietary needs — vegan, gluten-free, dairy-free, and more. Vireo goes beyond food too: browse discounted pharmaceuticals and cosmetics from pharmacies and beauty retailers. Collect your order anytime during store opening hours, with no fixed windows or rushing.</p>
+          </div>
+          <div class="feature-visual">
+            <div class="feature-placeholder">
+              <div style="font-size: 2rem;">🥗 🏪 ⏰</div>
+              <div class="feature-placeholder-text">Dietary filters · Multi-sector · Flexible hours</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Retailer Alerts -->
+        <div class="feature-row reverse reveal">
+          <div class="feature-text">
+            <h3>🔄 Retailer Expiry Alerts</h3>
+            <p>Vireo doesn't just serve customers — we also notify retailers when their products are approaching expiration. This helps stores upload items in time, maximise sales recovery, and prevent unnecessary waste.</p>
+          </div>
+          <div class="feature-visual">
+            <div class="feature-placeholder">
+              <div class="feature-placeholder-icon">🔄</div>
+              <div class="feature-placeholder-text">Retailer notification preview</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Interface Showcase -->
+  <div class="app-showcase-wrapper" id="app-interface">
+    <div class="section-inner">
+      <div class="app-showcase">
+        <div class="app-showcase-text reveal">
+          <div class="section-label">The App</div>
+          <h2>A familiar shopping experience</h2>
+          <p>Vireo is designed to feel like any other shopping app — intuitive, clean, and empowering. Users browse, choose, and buy on their own terms.</p>
+          <div class="app-feature-list">
+            <div class="app-feature-item"><div class="app-feature-dot"></div><p><strong>Search &amp; discover</strong> discounted items near you with real-time availability</p></div>
+            <div class="app-feature-item"><div class="app-feature-dot"></div><p><strong>Set notifications</strong> for your essential items — milk, bread, medicine, and more</p></div>
+            <div class="app-feature-item"><div class="app-feature-dot"></div><p><strong>See exact savings</strong> with original and discounted prices side by side</p></div>
+            <div class="app-feature-item"><div class="app-feature-dot"></div><p><strong>Reserve &amp; collect</strong> with a simple tap — pick up at your convenience</p></div>
+            <div class="app-feature-item"><div class="app-feature-dot"></div><p><strong>Expiry transparency</strong> — know exactly when each item expires before you buy</p></div>
+          </div>
+        </div>
+        <div class="app-phone-frame reveal reveal-delay-1">
+          <img src="app-mockup.jpeg" alt="Vireo app interface showing discounted products near you" class="app-phone-img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impact -->
+  <section id="impact">
+    <div class="section-label reveal">Impact</div>
+    <h2 class="reveal">Creating lasting change</h2>
+    <p class="lead reveal">Vireo delivers impact because it addresses the primary barrier to food security: affordability. By making nutritious food, medicine, and personal care products more accessible, we create ripple effects across communities.</p>
+
+    <div class="impact-split">
+      <div class="impact-column reveal">
+        <h3>🌱 Social Impact</h3>
+        <div class="impact-item"><div class="impact-bullet green"></div><p>Improves food security by giving households reliable access to affordable essential goods.</p></div>
+        <div class="impact-item"><div class="impact-bullet green"></div><p>Lowers financial strain — estimated to cut grocery bills by around 50%.</p></div>
+        <div class="impact-item"><div class="impact-bullet green"></div><p>Reduces reliance on food banks and charities by offering a dignified, market-based alternative.</p></div>
+        <div class="impact-item"><div class="impact-bullet green"></div><p>Enables low-income families to maintain a healthy, protein-rich diet.</p></div>
+        <div class="impact-item"><div class="impact-bullet green"></div><p>Removes the psychological barrier: users are treated as customers, not aid recipients, preserving dignity and independence.</p></div>
+      </div>
+      <div class="impact-column reveal reveal-delay-1">
+        <h3>🌍 Environmental Impact</h3>
+        <div class="impact-item"><div class="impact-bullet amber"></div><p>Prevents food waste, reducing methane emissions from decomposing food in landfills.</p></div>
+        <div class="impact-item"><div class="impact-bullet amber"></div><p>Conserves the land, water, and energy used to produce food that would otherwise be discarded.</p></div>
+        <div class="impact-item"><div class="impact-bullet amber"></div><p>Reduces the environmental footprint of pharmaceutical and cosmetic disposal — which requires energy-intensive recollection, transport, and processing.</p></div>
+        <div class="impact-item"><div class="impact-bullet amber"></div><p>Makes more efficient use of existing agricultural resources — more people fed from the same production level.</p></div>
+      </div>
+    </div>
+
+    <div class="priority-block reveal">
+      <h3>💚 Psychological Comfort</h3>
+      <p>For many people, food insecurity comes with shame, stress, and a fear of being judged — which keeps them from seeking help. Vireo removes this barrier by providing a familiar shopping experience. Users are treated as customers rather than recipients of aid, preserving their sense of dignity, independence, and personal choice while delivering meaningful support.</p>
+    </div>
+  </section>
+
+  <!-- Retailers -->
+  <section id="retailers">
+    <div class="section-label reveal">For Retailers</div>
+    <h2 class="reveal">A win for stores too</h2>
+    <p class="lead reveal">Vireo turns waste into revenue. Partnering with us is commercially and strategically advantageous for retailers of every size.</p>
+
+    <div class="retailer-benefits">
+      <div class="retailer-card reveal"><span class="retailer-num">01</span><div><h3>Revenue Recovery</h3><p>Recover revenue from products that would otherwise be removed from sale and discarded. Every item sold through Vireo is money that would have been lost.</p></div></div>
+      <div class="retailer-card reveal reveal-delay-1"><span class="retailer-num">02</span><div><h3>Sustainability Reporting</h3><p>Receive third-party reports demonstrating your commitment to sustainability — valuable for ESG targets, marketing, and public trust.</p></div></div>
+      <div class="retailer-card reveal reveal-delay-2"><span class="retailer-num">03</span><div><h3>Lower Disposal Costs</h3><p>Reduce waste management expenses. Every item sold is one fewer item requiring energy-intensive disposal processes.</p></div></div>
+      <div class="retailer-card reveal reveal-delay-3"><span class="retailer-num">04</span><div><h3>New Customer Acquisition</h3><p>Attract new customers who discover your store through the platform. Vireo exposes your discounted products to a much wider audience without development costs.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Business Model & Scalability -->
+  <section id="model">
+    <div class="section-label reveal">Sustainability</div>
+    <h2 class="reveal">Built to last &amp; scale</h2>
+
+    <div class="biz-scal">
+      <div class="biz-card reveal">
+        <h3>💰 Business Model</h3>
+        <p>Vireo operates as a self-sustaining social enterprise. A small commission is charged to retailers on each transaction — creating a model that does not depend on external funding or donations.</p>
+        <p>Customers never pay extra. Prices listed on the platform must match the in-store price to ensure fairness and prevent price discrimination.</p>
+      </div>
+      <div class="biz-card reveal reveal-delay-1">
+        <h3>🚀 Highly Scalable</h3>
+        <div class="scale-point">
+          <span class="scale-point-num">1</span>
+          <p>The platform is easily replicable across regions. Food waste, affordability challenges, and near-expiry discounting practices exist in most countries, which means that the core model can be transferred with minimal adaptation.</p>
+        </div>
+        <div class="scale-point">
+          <span class="scale-point-num">2</span>
+          <p>Vireo uses existing retail inventory, keeping marginal costs low as the platform grows.</p>
+        </div>
+        <div class="scale-point">
+          <span class="scale-point-num">3</span>
+          <p>Network effects accelerate growth: as more retailers and consumers join, the platform becomes more valuable for everyone.</p>
+        </div>
+        <div class="scale-point">
+          <span class="scale-point-num">4</span>
+          <p>The technology is modular, so new features and partnerships can be added easily without disrupting the existing platform.</p>
+        </div>
+        <div class="scale-point">
+          <span class="scale-point-num">5</span>
+          <p>Data-driven optimisation enables continuous improvement at scale — from smarter pricing suggestions to more efficient retailer notifications.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charity Partnerships -->
+    <div style="margin-top: 96px;">
+      <h2 class="reveal">Community &amp; charity partnerships</h2>
+      <div class="charity-content">
+        <div class="charity-text reveal">
+          <p>Vireo will collaborate with local charities and community organisations to ensure the platform reaches the people who need it most — including those who may not typically use apps.</p>
+          <p>Eligible families will receive priority access to newly listed products. If items are not claimed within a defined period, they are released to the general public — ensuring that households facing the greatest need are served first.</p>
+        </div>
+        <div class="charity-list reveal reveal-delay-1">
+          <h3>How we'll work with partners</h3>
+          <div class="charity-list-item"><span class="charity-check">✓</span>Raise awareness about the platform in communities</div>
+          <div class="charity-list-item"><span class="charity-check">✓</span>Assist with onboarding and user registration</div>
+          <div class="charity-list-item"><span class="charity-check">✓</span>Provide ongoing technical support</div>
+          <div class="charity-list-item"><span class="charity-check">✓</span>Promote access through community hubs &amp; student unions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="reveal" style="text-align: center;">Common questions</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal"><button class="faq-question"><span>How exactly do retailers upload products?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Three flexible methods accommodate retailers of all sizes: inventory system integration for large chains, a barcode scanning interface for medium-sized stores, and manual entry for small shops and local markets. This ensures low barriers to entry regardless of technological capabilities.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span>Where are the products stored after ordering?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Once an order is placed, store staff set products aside in a designated holding area chosen by the retailer — a stock room, service counter, or collection point. Retailers must follow normal food safety and storage standards until pickup. Refrigerated items remain in temperature-controlled conditions.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span>Best before or use by date — what's listed?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Retailers decide which products to list, but the platform requires them to clearly indicate whether an item is approaching a "best before" or "use by" date, along with the exact date. This ensures full transparency so customers can make informed decisions while all food safety requirements are respected.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span>Why don't supermarkets develop this themselves?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">A multi-retailer marketplace is more efficient than isolated store apps because it aggregates supply and demand in one place. Large retailers would face significant development costs and limited reach to only their own customers. Vireo exposes their products to a far wider audience without development or maintenance overhead. For smaller stores, building such technology would cost more than the expected revenue — making a shared platform the rational choice.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span>Will retailers be required to discount products?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">No. Retailers are not required to offer specific discounts, but prices listed must match the in-store price to ensure fairness. Since retailers already discount near-expiry items to encourage sales, these reductions naturally appear on the platform. The transparent, competitive marketplace incentivises attractive pricing.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span>Why aren't existing in-store discount stickers enough?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Discount stickers have three key limitations. They only reach customers already inside the store, so people at home never know what's available. Discounted items are scattered across aisles and easy to miss. And potential customers outside the store aren't exposed to the deals at all. Vireo brings all of this together in one searchable, accessible platform.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span>Who is responsible if someone gets sick?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Retailers remain responsible for food safety, just as they are today. Vireo functions as a marketplace, not a food handler, and operates under existing consumer protection regulations.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-question"><span>How do you reach people in food poverty who may not use apps?</span><span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">We will partner with community organisations, food banks, student unions, and local support groups to promote awareness and assist with onboarding. Access can also be promoted through community hubs for those less comfortable with technology.</div></div></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <div class="contact-wrapper" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-text reveal">
+          <div class="section-label">Get In Touch</div>
+          <h2>Let's connect</h2>
+          <p>Interested in partnering, investing, or learning more about Vireo? We'd love to hear from you.</p>
+        </div>
+        <div class="contact-links reveal reveal-delay-1">
+          <a href="mailto:contact@vireo.ie" class="contact-link"><div class="contact-icon email">✉️</div><div class="contact-link-info"><div class="contact-link-label">Email</div><div class="contact-link-value">contact@vireo.ie</div></div><span class="contact-link-arrow">→</span></a>
+          <a href="tel:+353000000000" class="contact-link"><div class="contact-icon phone">📞</div><div class="contact-link-info"><div class="contact-link-label">Phone</div><div class="contact-link-value">+353 00 000 0000</div></div><span class="contact-link-arrow">→</span></a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener" class="contact-link"><div class="contact-icon linkedin">💼</div><div class="contact-link-info"><div class="contact-link-label">LinkedIn</div><div class="contact-link-value">Vireo on LinkedIn</div></div><span class="contact-link-arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">vireo</div>
+    <p>Half the price, zero waste. Helping essentials reach people, not landfills.</p>
+  </footer>
+
+  <script>
+    // Scroll Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item.active').forEach(o => {
+          o.classList.remove('active');
+          o.querySelector('.faq-answer').style.maxHeight = '0';
+        });
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Mobile Nav
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(l => {
+      l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+  </script>
+</body>
+</html>
