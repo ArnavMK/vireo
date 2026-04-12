@@ -39,7 +39,7 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.75; font-size: 17px; overflow-x: hidden; }
+    body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.75; font-size: 19px; overflow-x: hidden; }
 
     /* ── Nav ── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between; background: rgba(250,252,250,0.8); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); border-bottom: 1px solid var(--border-light); }
@@ -92,8 +92,8 @@
     /* ── Solution ── */
     .solution-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .solution-intro-text p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.85; margin-bottom: 16px; }
-    .phone-mockup { background: linear-gradient(145deg,#fff 0%,#f0f5f0 100%); border: 1px solid var(--border-light); border-radius: 28px; padding: 24px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-lg); }
-    .phone-mockup::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 30%,var(--accent-glow) 0%,transparent 60%); pointer-events: none; }
+    .phone-mockup { background: none; border: none; border-radius: 28px; padding: 0; text-align: center; position: relative; overflow: hidden; box-shadow: none; }
+    .phone-mockup::before { display: none; }
     .phone-inner { position: relative; z-index: 1; background: var(--bg-primary); border-radius: 20px; padding: 32px 20px; min-height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .phone-inner .app-name { font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); margin-bottom: 24px; }
     .mock-product { width: 100%; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; text-align: left; box-shadow: var(--shadow-sm); }
@@ -106,8 +106,8 @@
     /* ── How It Works — using the graphic style ── */
     .how-it-works-visual { margin-top: 56px; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
     .hiw-step { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
-    .hiw-circle { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(145deg, #2d8a4e 0%, #22c55e 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(34,197,94,0.2); }
-    .hiw-circle span { font-family: var(--font-display); font-size: 2.6rem; color: rgba(255,255,255,0.85); font-style: italic; }
+    .hiw-circle { width: 130px; height: 130px; border-radius: 50%; background: linear-gradient(145deg, #2d8a4e 0%, #22c55e 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(34,197,94,0.2); }
+    .hiw-circle span { font-family: var(--font-display); font-size: 4rem; color: rgba(255,255,255,0.92); font-style: italic; }
     .hiw-label { font-weight: 700; font-size: 1.1rem; color: var(--text-primary); }
     .hiw-desc { font-size: 0.95rem; color: var(--text-secondary); max-width: 200px; line-height: 1.6; }
     .hiw-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
@@ -125,8 +125,8 @@
     /* ── CSS Notification Mockups ── */
     .notif-mockup-container { display: flex; flex-direction: column; gap: 24px; width: 100%; }
     .notif-bubble { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 16px; padding: 16px 20px; box-shadow: 0 2px 12px rgba(26,46,31,0.08); border: 1px solid var(--border-light); }
-    .notif-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(145deg, #2d8a4e, #22c55e); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .notif-icon img { width: 28px; height: 28px; border-radius: 6px; }
+    .notif-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(145deg, #2d8a4e, #22c55e); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-display); font-size: 1.15rem; color: #fff; font-style: italic; }
+    .notif-icon img { display: none; }
     .notif-content { flex: 1; }
     .notif-app { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 2px; }
     .notif-msg { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.4; }
@@ -164,8 +164,9 @@
     .app-feature-item p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.65; margin: 0; }
     .app-feature-item strong { color: var(--text-primary); }
     .app-phone-frame { display: flex; justify-content: center; position: relative; }
-    .app-phone-frame::before { content: ''; position: absolute; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle,var(--accent-glow-strong) 0%,transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
-    .app-phone-img { position: relative; z-index: 2; width: 300px; border-radius: 36px; box-shadow: var(--shadow-lg), 0 24px 60px rgba(26,46,31,0.12); }
+    .app-phone-frame::before { display: none; }
+    .app-phone-img { position: relative; z-index: 2; display: block; }
+    .app-phone-frame .app-phone-img { width: 240px; height: 500px; object-fit: cover; object-position: center; border-radius: 44px; box-shadow: var(--shadow-lg), 0 24px 60px rgba(26,46,31,0.12); transform: scale(1.08); }
 
     /* ── Impact ── */
     .impact-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
@@ -184,7 +185,7 @@
     .retailer-benefits { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 48px; }
     .retailer-card { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s; }
     .retailer-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .retailer-num { font-family: var(--font-display); font-size: 2rem; color: var(--accent-bright); opacity: 0.6; line-height: 1; flex-shrink: 0; }
+    .retailer-num { font-family: var(--font-display); font-size: 2rem; color: var(--accent-bright); line-height: 1; flex-shrink: 0; }
     .retailer-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
     .retailer-card p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; }
 
@@ -243,7 +244,7 @@
     footer p { color: var(--text-muted); font-size: 0.9rem; }
 
     /* ── Reveal ── */
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
@@ -260,7 +261,7 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(250,252,250,0.95); backdrop-filter: blur(20px); padding: 24px 32px; gap: 20px; border-bottom: 1px solid var(--border-light); }
-      .app-phone-img { width: 260px; }
+      .app-phone-frame .app-phone-img { width: 230px; height: 468px; }
       .how-it-works-visual { gap: 20px; }
       .hiw-dot { display: none; }
       .notify-panel-body { grid-template-columns: 1fr; }
@@ -268,9 +269,9 @@
     @media (max-width: 600px) {
       section, .section-inner { padding: 64px 18px; }
       .problem-grid { grid-template-columns: 1fr; }
-      .app-phone-img { width: 240px; }
-      .hiw-circle { width: 80px; height: 80px; }
-      .hiw-circle span { font-size: 2rem; }
+      .app-phone-frame .app-phone-img { width: 210px; height: 428px; }
+      .hiw-circle { width: 100px; height: 100px; }
+      .hiw-circle span { font-size: 3rem; }
     }
   </style>
 </head>
@@ -283,8 +284,8 @@
       <span class="nav-brand-name">vireo</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#problem">The Problem</a></li>
-      <li><a href="#solution">Solution</a></li>
+      <li><a href="#problem">The Context</a></li>
+      <li><a href="#solution">Our Solution</a></li>
       <li><a href="#app-interface">The App</a></li>
       <li><a href="#impact">Impact</a></li>
       <li><a href="#retailers">For Retailers</a></li>
@@ -314,16 +315,16 @@
 
   <!-- Problem -->
   <section id="problem">
-    <div class="section-label reveal">The Problem</div>
+    <div class="section-label reveal">The Context</div>
     <h2 class="reveal">A crisis hiding in plain sight</h2>
     <p class="lead reveal">Food waste and food poverty exist side by side. Millions go hungry while supermarkets discard tonnes of perfectly good products every year.</p>
     <div class="problem-grid">
       <div class="problem-card reveal">
-        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=400&fit=crop" alt="Family struggling with food poverty" class="problem-card-img">
+        <img src="problem-poverty.png" alt="Family struggling with food poverty" class="problem-card-img">
         <div class="problem-card-body"><h3>Food Poverty in Ireland</h3><p>1 in 11 people live in food poverty, and 25% of families worry about being unable to provide enough food for their children. 83% of adults believe grocery costs are unacceptably high, and 48% feel financial pressure from rising food prices.</p></div>
       </div>
       <div class="problem-card reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&h=400&fit=crop" alt="Landfill food waste" class="problem-card-img">
+        <img src="problem-environment.jpeg" alt="Landfill food waste" class="problem-card-img">
         <div class="problem-card-body"><h3>Environmental Devastation</h3><p>Food waste accounts for approximately 10% of global greenhouse gas emissions — generating twice the emissions of the entire aviation industry. Decomposing food releases methane, a gas 25 times stronger than CO₂, while the wasted food had already consumed 18% of farmland, 19% of fertilisers, and 21% of freshwater.</p></div>
       </div>
       <div class="problem-card reveal reveal-delay-2">
@@ -335,20 +336,16 @@
 
   <!-- Solution -->
   <section id="solution">
-    <div class="section-label reveal">The Solution</div>
+    <div class="section-label reveal">Our Solution</div>
     <div class="solution-intro">
       <div class="solution-intro-text reveal">
         <h2>Meet <span class="highlight">Vireo</span></h2>
         <p>An online marketplace for near-expiry products and items safe for consumption but unsuitable for full-price sale. We digitalise existing in-store discounts, making them visible and searchable for everyone.</p>
         <p>Discounts of 75–90% on near-expiry products already exist in stores. But customers don't know what's discounted, in which stores, or on what days. Vireo solves this information gap.</p>
       </div>
-      <div class="phone-mockup reveal reveal-delay-1">
-        <div class="phone-inner">
-          <div class="app-name">vireo</div>
-          <div class="mock-product"><span class="mock-emoji">🍓</span><div class="mock-details"><div class="name">Strawberries 400g</div><div class="store">Tesco — Castletroy</div></div><span class="mock-discount">-75%</span></div>
-          <div class="mock-product"><span class="mock-emoji">🥛</span><div class="mock-details"><div class="name">Organic Milk 1L</div><div class="store">Dunnes — City Centre</div></div><span class="mock-discount">-60%</span></div>
-          <div class="mock-product"><span class="mock-emoji">🧴</span><div class="mock-details"><div class="name">Vitamin C Serum</div><div class="store">Boots — Crescent</div></div><span class="mock-discount">-80%</span></div>
-          <div class="mock-product"><span class="mock-emoji">💊</span><div class="mock-details"><div class="name">Paracetamol 24pk</div><div class="store">McCauley Pharmacy</div></div><span class="mock-discount">-90%</span></div>
+      <div class="phone-mockup reveal reveal-delay-1" style="padding: 0; background: none; border: none; box-shadow: none;">
+        <div class="app-phone-frame">
+          <img src="vireo-preview.png" alt="Vireo app preview" class="app-phone-img">
         </div>
       </div>
     </div>
@@ -385,7 +382,7 @@
         <!-- Notify Me + Notifications -->
         <div class="feature-row reveal">
           <div class="feature-text">
-            <h3>🔔 "Notify Me" Alerts</h3>
+            <h3>"Notify Me" Alerts</h3>
             <p>Set alerts for the products you buy regularly — milk, bread, baby food, medicine, and more. When they become available at a reduced price nearby, you'll get a notification so you never miss a deal on the items you need most.</p>
             <p style="margin-top: 12px;">We also notify retailers when their products are approaching expiration, helping them upload items in time and maximise sales recovery.</p>
           </div>
@@ -394,14 +391,16 @@
             <div class="notify-panel">
               <div class="notify-panel-header">
                 <div class="notify-panel-title">Notify Me for Essentials</div>
-                <div class="notify-panel-bell">🔔</div>
+                <div class="notify-panel-bell">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                </div>
               </div>
               <div class="notify-panel-body">
-                <div class="notify-toggle"><span class="notify-toggle-icon">🥬</span><span class="notify-toggle-name">Vegetables</span><div class="toggle-switch on"></div></div>
-                <div class="notify-toggle"><span class="notify-toggle-icon">💊</span><span class="notify-toggle-name">Medicine</span><div class="toggle-switch off"></div></div>
-                <div class="notify-toggle"><span class="notify-toggle-icon">🥛</span><span class="notify-toggle-name">Dairy</span><div class="toggle-switch on"></div></div>
-                <div class="notify-toggle"><span class="notify-toggle-icon">🍞</span><span class="notify-toggle-name">Bread</span><div class="toggle-switch on"></div></div>
-                <div class="notify-toggle"><span class="notify-toggle-icon">🍎</span><span class="notify-toggle-name">Fruit</span><div class="toggle-switch off"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-name">Vegetables</span><div class="toggle-switch on"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-name">Medicine</span><div class="toggle-switch off"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-name">Dairy</span><div class="toggle-switch on"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-name">Bread</span><div class="toggle-switch on"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-name">Fruit</span><div class="toggle-switch off"></div></div>
               </div>
             </div>
             <!-- CSS Notification Bubbles -->
@@ -409,14 +408,14 @@
               <div>
                 <div class="notif-label">For customers:</div>
                 <div class="notif-bubble">
-                  <div class="notif-icon"><img src="logo.jpeg" alt="V"></div>
+                  <div class="notif-icon">v</div>
                   <div class="notif-content"><div class="notif-app">Vireo</div><div class="notif-msg">Tesco has 10 eggs expiring today!</div></div>
                 </div>
               </div>
               <div>
                 <div class="notif-label">For retailers:</div>
                 <div class="notif-bubble">
-                  <div class="notif-icon"><img src="logo.jpeg" alt="V"></div>
+                  <div class="notif-icon">v</div>
                   <div class="notif-content"><div class="notif-app">Vireo</div><div class="notif-msg">10 yoghurts will expire tomorrow.</div></div>
                 </div>
               </div>
@@ -427,21 +426,18 @@
         <!-- CO₂ Tracking -->
         <div class="feature-row reverse reveal">
           <div class="feature-text">
-            <h3>📊 CO₂ Savings Tracker</h3>
+            <h3>CO₂ Savings Tracker</h3>
             <p>Every purchase on Vireo prevents food from reaching a landfill. Our built-in tracker shows each user exactly how much CO₂ they've helped save, turning everyday shopping into measurable environmental action.</p>
           </div>
-          <div class="feature-visual">
-            <div class="feature-placeholder">
-              <div class="feature-placeholder-icon">📊</div>
-              <div class="feature-placeholder-text">CO₂ savings graph coming soon</div>
-            </div>
+          <div class="feature-visual" style="padding: 0; overflow: hidden; border-radius: var(--radius);">
+            <img src="co2-graph.jpeg" alt="CO₂ Savings Graph" style="width: 100%; height: 100%; min-height: 280px; object-fit: cover; border-radius: var(--radius); display: block;">
           </div>
         </div>
 
         <!-- Built for Every Lifestyle -->
         <div class="feature-row reveal">
           <div class="feature-text">
-            <h3>🥗 Built for Every Lifestyle</h3>
+            <h3>Built for Every Lifestyle</h3>
             <p>Filter by dietary needs — vegan, gluten-free, dairy-free, and more. Vireo goes beyond food too: browse discounted pharmaceuticals and cosmetics from pharmacies and beauty retailers. Collect your order anytime during store opening hours, with no fixed windows or rushing.</p>
           </div>
           <div class="feature-visual">
@@ -472,7 +468,7 @@
           </div>
         </div>
         <div class="app-phone-frame reveal reveal-delay-1">
-          <img src="app-mockup.jpeg" alt="Vireo app interface" class="app-phone-img">
+          <img src="app-mockup.png" alt="Vireo app interface" class="app-phone-img">
         </div>
       </div>
     </div>
@@ -521,16 +517,16 @@
 
   <!-- Business Model -->
   <section id="model">
-    <div class="section-label reveal">Sustainability</div>
+    <div class="section-label reveal">Business Model</div>
     <h2 class="reveal">Built to last &amp; scale</h2>
     <div class="biz-scal">
       <div class="biz-card reveal">
-        <h3>💰 Business Model</h3>
+        <h3>Business Model</h3>
         <p>Vireo operates as a self-sustaining social enterprise. A small commission is charged to retailers on each transaction — creating a model that does not depend on external funding or donations.</p>
         <p>Customers never pay extra. Prices listed on the platform must match the in-store price to ensure fairness and prevent price discrimination.</p>
       </div>
       <div class="biz-card reveal reveal-delay-1">
-        <h3>🚀 Highly Scalable</h3>
+        <h3>Highly Scalable</h3>
         <div class="scale-point"><span class="scale-point-num">1</span><p>The platform is easily replicable across regions. Food waste, affordability challenges, and near-expiry discounting practices exist in most countries, which means that the core model can be transferred with minimal adaptation.</p></div>
         <div class="scale-point"><span class="scale-point-num">2</span><p>Vireo uses existing retail inventory, keeping marginal costs low as the platform grows.</p></div>
         <div class="scale-point"><span class="scale-point-num">3</span><p>Network effects accelerate growth: as more retailers and consumers join, the platform becomes more valuable for everyone.</p></div>
@@ -582,7 +578,7 @@
           <p>Interested in partnering, investing, or learning more about Vireo? We'd love to hear from you.</p>
         </div>
         <div class="contact-links reveal reveal-delay-1">
-          <a href="mailto:vireo.marketplace@gmail.com" class="contact-link"><div class="contact-icon email">✉️</div><div class="contact-link-info"><div class="contact-link-label">Email</div><div class="contact-link-value">vireo.marketplace@gmail.com</div></div><span class="contact-link-arrow">→</span></a>
+          <a href="/cdn-cgi/l/email-protection#186e716a7d773675796a737d6c6874797b7d587f75797174367b7775" class="contact-link"><div class="contact-icon email"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div class="contact-link-info"><div class="contact-link-label">Email</div><div class="contact-link-value"><span class="__cf_email__" data-cfemail="b9cfd0cbdcd697d4d8cbd2dccdc9d5d8dadcf9ded4d8d0d597dad6d4">[email&#160;protected]</span></div></div><span class="contact-link-arrow">→</span></a>
           <a href="tel:+353876706082" class="contact-link"><div class="contact-icon phone">📞</div><div class="contact-link-info"><div class="contact-link-label">Phone</div><div class="contact-link-value">+353 87 670 6082</div></div><span class="contact-link-arrow">→</span></a>
           <a href="https://linkedin.com/company/vireo-marketplace" target="_blank" rel="noopener" class="contact-link"><div class="contact-icon linkedin">💼</div><div class="contact-link-info"><div class="contact-link-label">LinkedIn — Vireo</div><div class="contact-link-value">Vireo on LinkedIn</div></div><span class="contact-link-arrow">→</span></a>
           <a href="https://linkedin.com/in/varvara-vasylch" target="_blank" rel="noopener" class="contact-link"><div class="contact-icon linkedin">👤</div><div class="contact-link-info"><div class="contact-link-label">LinkedIn — Founder</div><div class="contact-link-value">Varvara on LinkedIn</div></div><span class="contact-link-arrow">→</span></a>
@@ -600,7 +596,7 @@
     <p>Half the price, zero waste. Helping essentials reach people, not landfills.</p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -621,10 +617,8 @@
     });
 
     document.getElementById('navToggle').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('open');
-    });
-    document.querySelectorAll('.nav-links a').forEach(l => {
-      l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+      const links = document.getElementById('navLinks');
+      links.classList.toggle('open');
     });
   </script>
 </body>
