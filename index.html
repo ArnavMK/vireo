@@ -74,7 +74,7 @@
     .hero-desc { font-size: 1.25rem; color: var(--text-secondary); max-width: 620px; line-height: 1.85; margin-bottom: 40px; }
     .hero-stats { display: flex; gap: 52px; margin-top: 56px; flex-wrap: wrap; }
     .hero-stat { display: flex; flex-direction: column; }
-    .hero-stat-number { font-family: var(--font-display); font-size: 3rem; color: var(--accent-bright); line-height: 1; margin-bottom: 6px; }
+    .hero-stat-number { font-family: var(--font-display); font-size: 3rem; color: var(--accent); line-height: 1; margin-bottom: 6px; }
     .hero-stat-label { font-size: 0.92rem; color: var(--text-muted); font-weight: 500; max-width: 190px; }
     .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; animation: bob 2s ease-in-out infinite; }
     .scroll-hint svg { width: 20px; height: 20px; stroke: var(--text-muted); }
@@ -125,8 +125,7 @@
     /* ── CSS Notification Mockups ── */
     .notif-mockup-container { display: flex; flex-direction: column; gap: 24px; width: 100%; }
     .notif-bubble { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 16px; padding: 16px 20px; box-shadow: 0 2px 12px rgba(26,46,31,0.08); border: 1px solid var(--border-light); }
-    .notif-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(145deg, #2d8a4e, #22c55e); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-display); font-size: 1.15rem; color: #fff; font-style: italic; }
-    .notif-icon img { display: none; }
+    .notif-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(145deg, #2d8a4e, #22c55e); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-display); font-size: 1.15rem; color: #fff; font-style: italic; overflow: hidden; padding: 0; }
     .notif-content { flex: 1; }
     .notif-app { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 2px; }
     .notif-msg { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.4; }
@@ -185,7 +184,7 @@
     .retailer-benefits { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 48px; }
     .retailer-card { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s; }
     .retailer-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .retailer-num { font-family: var(--font-display); font-size: 2rem; color: #1a7a3c; line-height: 1; flex-shrink: 0; }
+    .retailer-num { font-family: var(--font-display); font-size: 2rem; color: var(--accent); line-height: 1; flex-shrink: 0; }
     .retailer-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
     .retailer-card p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; }
 
@@ -195,7 +194,7 @@
     .biz-card h3 { font-size: 1.4rem; margin-bottom: 18px; }
     .biz-card p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.85; margin-bottom: 14px; }
     .scale-point { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; }
-    .scale-point-num { font-family: var(--font-display); font-size: 1.4rem; color: #1a7a3c; flex-shrink: 0; line-height: 1.5; }
+    .scale-point-num { font-family: var(--font-display); font-size: 1.4rem; color: var(--accent); flex-shrink: 0; line-height: 1.5; }
     .scale-point p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; margin: 0; }
 
     /* ── Charities ── */
@@ -244,7 +243,7 @@
     footer p { color: var(--text-muted); font-size: 0.9rem; }
 
     /* ── Reveal ── */
-    .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
@@ -396,11 +395,11 @@
                 </div>
               </div>
               <div class="notify-panel-body">
-                <div class="notify-toggle"><span class="notify-toggle-name">Vegetables</span><div class="toggle-switch on"></div></div>
-                <div class="notify-toggle"><span class="notify-toggle-name">Medicine</span><div class="toggle-switch off"></div></div>
-                <div class="notify-toggle"><span class="notify-toggle-name">Dairy</span><div class="toggle-switch on"></div></div>
-                <div class="notify-toggle"><span class="notify-toggle-name">Bread</span><div class="toggle-switch on"></div></div>
-                <div class="notify-toggle"><span class="notify-toggle-name">Fruit</span><div class="toggle-switch off"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-icon">🥦</span><span class="notify-toggle-name">Vegetables</span><div class="toggle-switch on"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-icon">💊</span><span class="notify-toggle-name">Medicine</span><div class="toggle-switch off"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-icon">🥛</span><span class="notify-toggle-name">Dairy</span><div class="toggle-switch on"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-icon">🍞</span><span class="notify-toggle-name">Bread</span><div class="toggle-switch on"></div></div>
+                <div class="notify-toggle"><span class="notify-toggle-icon">🍎</span><span class="notify-toggle-name">Fruit</span><div class="toggle-switch off"></div></div>
               </div>
             </div>
             <!-- CSS Notification Bubbles -->
@@ -408,14 +407,14 @@
               <div>
                 <div class="notif-label">For customers:</div>
                 <div class="notif-bubble">
-                  <div class="notif-icon">v</div>
+                  <div class="notif-icon"><img src="logo.jpeg" alt="Vireo" style="display:block; width:100%; height:100%; object-fit:cover; border-radius:10px;"></div>
                   <div class="notif-content"><div class="notif-app">Vireo</div><div class="notif-msg">Tesco has 10 eggs expiring today!</div></div>
                 </div>
               </div>
               <div>
                 <div class="notif-label">For retailers:</div>
                 <div class="notif-bubble">
-                  <div class="notif-icon">v</div>
+                  <div class="notif-icon"><img src="logo.jpeg" alt="Vireo" style="display:block; width:100%; height:100%; object-fit:cover; border-radius:10px;"></div>
                   <div class="notif-content"><div class="notif-app">Vireo</div><div class="notif-msg">10 yoghurts will expire tomorrow.</div></div>
                 </div>
               </div>
@@ -442,11 +441,8 @@
             <h3>Built for Every Lifestyle</h3>
             <p>Filter by dietary needs — vegan, gluten-free, dairy-free, and more. Vireo goes beyond food too: browse discounted pharmaceuticals and cosmetics from pharmacies and beauty retailers. Collect your order anytime during store opening hours, with no fixed windows or rushing.</p>
           </div>
-          <div class="feature-visual">
-            <div class="feature-placeholder">
-              <div style="font-size: 2rem;">🥗 🏪 ⏰</div>
-              <div class="feature-placeholder-text">Dietary filters · Multi-sector · Flexible hours</div>
-            </div>
+          <div class="feature-visual" style="padding: 0; overflow: hidden;">
+            <img src="lifestyle.png" alt="Built for every lifestyle" style="width:70%; height:70%; min-height:180px; object-fit:cover; display:block; border-radius: var(--radius);">
           </div>
         </div>
       </div>
@@ -580,7 +576,7 @@
           <p>Interested in partnering, investing, or learning more about Vireo? We'd love to hear from you.</p>
         </div>
         <div class="contact-links reveal reveal-delay-1">
-          <a href="mailto:vireo.marketplace@gmail.com" class="contact-link"><div class="contact-icon email"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div class="contact-link-info"><div class="contact-link-label">Email</div><div class="contact-link-value"><span class="__cf_email__" data-cfemail="b9cfd0cbdcd697d4d8cbd2dccdc9d5d8dadcf9ded4d8d0d597dad6d4"><span class="__cf_email__" data-cfemail="c1b7a8b3a4aeefaca0b3aaa4b5b1ada0a2a481a6aca0a8adefa2aeac">vireo.marketplace@gmail.com</span></span></div></div><span class="contact-link-arrow">→</span></a>
+          <a href="mailto:vireo.marketplace@gmail.com" class="contact-link"><div class="contact-icon email"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div class="contact-link-info"><div class="contact-link-label">Email</div><div class="contact-link-value"><span class="__cf_email__" data-cfemail="b9cfd0cbdcd697d4d8cbd2dccdc9d5d8dadcf9ded4d8d0d597dad6d4"><span class="__cf_email__" data-cfemail="c1b7a8b3a4aeefaca0b3aaa4b5b1ada0a2a481a6aca0a8adefa2aeac"><span class="__cf_email__" data-cfemail="33455a41565c1d5e5241585647435f52505673545e525a5f1d505c5e">vireo.marketplace@gmail.com</span></span></span></div></div><span class="contact-link-arrow">→</span></a>
           <a href="tel:+353876706082" class="contact-link"><div class="contact-icon phone">📞</div><div class="contact-link-info"><div class="contact-link-label">Phone</div><div class="contact-link-value">+353 87 670 6082</div></div><span class="contact-link-arrow">→</span></a>
           <a href="https://linkedin.com/company/vireo-marketplace" target="_blank" rel="noopener" class="contact-link"><div class="contact-icon linkedin">💼</div><div class="contact-link-info"><div class="contact-link-label">LinkedIn — Vireo</div><div class="contact-link-value">Vireo on LinkedIn</div></div><span class="contact-link-arrow">→</span></a>
           <a href="https://linkedin.com/in/varvara-vasylch" target="_blank" rel="noopener" class="contact-link"><div class="contact-icon linkedin">👤</div><div class="contact-link-info"><div class="contact-link-label">LinkedIn — Founder</div><div class="contact-link-value">Varvara on LinkedIn</div></div><span class="contact-link-arrow">→</span></a>
@@ -599,13 +595,15 @@
   </footer>
 
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
+    // ── Scroll reveal ──
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
+    // ── FAQ accordion ──
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.parentElement;
@@ -615,14 +613,24 @@
           o.classList.remove('active');
           o.querySelector('.faq-answer').style.maxHeight = '0';
         });
-        if (!isActive) { item.classList.add('active'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
       });
     });
 
-    document.getElementById('navToggle').addEventListener('click', () => {
-      const links = document.getElementById('navLinks');
-      links.classList.toggle('open');
-    });
+    // ── Hamburger menu ──
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => navLinks.classList.remove('open'));
+      });
+    }
   </script>
 </body>
 </html>
