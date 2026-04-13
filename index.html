@@ -92,7 +92,7 @@
     /* ── Solution ── */
     .solution-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .solution-intro-text p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.85; margin-bottom: 16px; }
-    .phone-mockup { background: none; border: none; border-radius: 28px; padding: 0; text-align: center; position: relative; overflow: hidden; box-shadow: none; }
+    .phone-mockup { background: none; border: none; border-radius: 0; padding: 0; text-align: center; position: relative; overflow: visible; box-shadow: none; }
     .phone-mockup::before { display: none; }
     .phone-inner { position: relative; z-index: 1; background: var(--bg-primary); border-radius: 20px; padding: 32px 20px; min-height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .phone-inner .app-name { font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); margin-bottom: 24px; }
@@ -165,8 +165,8 @@
     .app-feature-item strong { color: var(--text-primary); }
     .app-phone-frame { display: flex; justify-content: center; position: relative; }
     .app-phone-frame::before { display: none; }
-    .app-phone-img { position: relative; z-index: 2; display: block; }
-    .app-phone-frame .app-phone-img { width: 240px; height: 500px; object-fit: cover; object-position: center; border-radius: 44px; box-shadow: var(--shadow-lg), 0 24px 60px rgba(26,46,31,0.12); transform: scale(1.08); }
+    .app-phone-img { position: relative; z-index: 2; display: block; width: 100%; max-width: 280px; height: auto; border-radius: 0; box-shadow: none; transform: none; }
+    .app-phone-frame .app-phone-img { width: 100%; max-width: 280px; height: auto; object-fit: unset; border-radius: 0; box-shadow: none; transform: none; }
 
     /* ── Impact ── */
     .impact-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
@@ -185,7 +185,7 @@
     .retailer-benefits { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 48px; }
     .retailer-card { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s; }
     .retailer-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .retailer-num { font-family: var(--font-display); font-size: 2rem; color: var(--accent-bright); line-height: 1; flex-shrink: 0; }
+    .retailer-num { font-family: var(--font-display); font-size: 2rem; color: #1a7a3c; line-height: 1; flex-shrink: 0; }
     .retailer-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
     .retailer-card p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; }
 
@@ -195,7 +195,7 @@
     .biz-card h3 { font-size: 1.4rem; margin-bottom: 18px; }
     .biz-card p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.85; margin-bottom: 14px; }
     .scale-point { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; }
-    .scale-point-num { font-family: var(--font-display); font-size: 1.4rem; color: var(--accent-bright); flex-shrink: 0; line-height: 1.5; }
+    .scale-point-num { font-family: var(--font-display); font-size: 1.4rem; color: #1a7a3c; flex-shrink: 0; line-height: 1.5; }
     .scale-point p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; margin: 0; }
 
     /* ── Charities ── */
@@ -261,7 +261,7 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(250,252,250,0.95); backdrop-filter: blur(20px); padding: 24px 32px; gap: 20px; border-bottom: 1px solid var(--border-light); }
-      .app-phone-frame .app-phone-img { width: 230px; height: 468px; }
+      .app-phone-frame .app-phone-img { max-width: 240px; }
       .how-it-works-visual { gap: 20px; }
       .hiw-dot { display: none; }
       .notify-panel-body { grid-template-columns: 1fr; }
@@ -269,7 +269,7 @@
     @media (max-width: 600px) {
       section, .section-inner { padding: 64px 18px; }
       .problem-grid { grid-template-columns: 1fr; }
-      .app-phone-frame .app-phone-img { width: 210px; height: 428px; }
+      .app-phone-frame .app-phone-img { max-width: 200px; }
       .hiw-circle { width: 100px; height: 100px; }
       .hiw-circle span { font-size: 3rem; }
     }
@@ -429,11 +429,12 @@
             <h3>CO₂ Savings Tracker</h3>
             <p>Every purchase on Vireo prevents food from reaching a landfill. Our built-in tracker shows each user exactly how much CO₂ they've helped save, turning everyday shopping into measurable environmental action.</p>
           </div>
-          <div class="feature-visual" style="padding: 0; overflow: hidden; border-radius: var(--radius);">
-            <img src="co2-graph.jpeg" alt="CO₂ Savings Graph" style="width: 100%; height: 100%; min-height: 280px; object-fit: cover; border-radius: var(--radius); display: block;">
+          <div class="feature-visual" style="padding: 0; align-items: flex-start; background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-hero) 100%);">
+            <div style="width: 100%; max-width: 290px; margin: 40px auto 0; -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 85%); mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 85%);">
+              <img src="co2.png" alt="CO₂ Savings Tracker" style="width: 100%; height: auto; display: block; filter: drop-shadow(0 12px 24px rgba(26,46,31,0.12));">
+            </div>
           </div>
         </div>
-
         <!-- Built for Every Lifestyle -->
         <div class="feature-row reveal">
           <div class="feature-text">
@@ -578,7 +579,7 @@
           <p>Interested in partnering, investing, or learning more about Vireo? We'd love to hear from you.</p>
         </div>
         <div class="contact-links reveal reveal-delay-1">
-          <a href="mailto:vireo.marketplace@gmail.com" class="contact-link"><div class="contact-icon email"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div class="contact-link-info"><div class="contact-link-label">Email</div><div class="contact-link-value"><span class="__cf_email__" data-cfemail="b9cfd0cbdcd697d4d8cbd2dccdc9d5d8dadcf9ded4d8d0d597dad6d4">vireo.marketplace@gmail.com</span></div></div><span class="contact-link-arrow">→</span></a>
+          <a href="/cdn-cgi/l/email-protection#16607f647379387b77647d7362667a77757356717b777f7a3875797b" class="contact-link"><div class="contact-icon email"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></div><div class="contact-link-info"><div class="contact-link-label">Email</div><div class="contact-link-value"><span class="__cf_email__" data-cfemail="b9cfd0cbdcd697d4d8cbd2dccdc9d5d8dadcf9ded4d8d0d597dad6d4"><span class="__cf_email__" data-cfemail="c1b7a8b3a4aeefaca0b3aaa4b5b1ada0a2a481a6aca0a8adefa2aeac">[email&#160;protected]</span></span></div></div><span class="contact-link-arrow">→</span></a>
           <a href="tel:+353876706082" class="contact-link"><div class="contact-icon phone">📞</div><div class="contact-link-info"><div class="contact-link-label">Phone</div><div class="contact-link-value">+353 87 670 6082</div></div><span class="contact-link-arrow">→</span></a>
           <a href="https://linkedin.com/company/vireo-marketplace" target="_blank" rel="noopener" class="contact-link"><div class="contact-icon linkedin">💼</div><div class="contact-link-info"><div class="contact-link-label">LinkedIn — Vireo</div><div class="contact-link-value">Vireo on LinkedIn</div></div><span class="contact-link-arrow">→</span></a>
           <a href="https://linkedin.com/in/varvara-vasylch" target="_blank" rel="noopener" class="contact-link"><div class="contact-icon linkedin">👤</div><div class="contact-link-info"><div class="contact-link-label">LinkedIn — Founder</div><div class="contact-link-value">Varvara on LinkedIn</div></div><span class="contact-link-arrow">→</span></a>
@@ -596,7 +597,7 @@
     <p>Half the price, zero waste. Helping essentials reach people, not landfills.</p>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -612,14 +613,4 @@
           o.classList.remove('active');
           o.querySelector('.faq-answer').style.maxHeight = '0';
         });
-        if (!isActive) { item.classList.add('active'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
-      });
-    });
-
-    document.getElementById('navToggle').addEventListener('click', () => {
-      const links = document.getElementById('navLinks');
-      links.classList.toggle('open');
-    });
-  </script>
-</body>
-</html>
+        if (!isActive) { item.classList.add('active'); answer.style.maxHeight = answe
